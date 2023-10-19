@@ -9,10 +9,10 @@
 /*   Updated: 2023/10/18 15:11:39 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
-*/
+
 void	*ft_calloc(size_t nbrelement, size_t elementsize)
 {
 	size_t	index;

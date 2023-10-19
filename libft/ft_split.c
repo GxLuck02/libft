@@ -14,6 +14,35 @@
 #include <string.h>
 #include "libft.h"
 
+
+char	*ft_strchr(const char	*string, int searchChar)
+{
+	while (*string != '\0')
+	{
+		if (*string == searchChar)
+			return ((char *)string);
+		string++;
+	}
+	return (0);
+}
+
+char	*ft_strlcpy(char *dest, const char *src, size_t lenght)
+{
+	size_t	index;
+
+	index = 0;
+	while (index < lenght && src[index] != '\0')
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	dest[index] = '\0';
+	return (dest);
+}
+
+
+
+
 int	nbr_word(char const *s, char c)
 {
 	int	result;
@@ -23,9 +52,14 @@ int	nbr_word(char const *s, char c)
 		result++;
 	while (*s != '\0')
 	{
-		if (*s == c && *s != *(s + 1) && *(s + 1) != '\0')
+		if (*s == c)
+		{
 			result++;
-		s++;
+			while (*s == c)
+				s++;
+		}
+		else
+			s++;
 	}
 	return (result);
 }
@@ -45,23 +79,27 @@ char	**ft_split(char const	*s, char c)
 	while (nbword > 0)
 	{
 		len = ft_strchr(s, c) - s;
-		tab_string[index] = malloc((len + 2) * sizeof(char));
+		if (!ft_strchr(s,c))
+			len = ft_strlen(s);
+		tab_string[index] = malloc((len + 1) * sizeof(char));
 		ft_strlcpy(tab_string[index], s, len);
-		tab_string[index][len] = '\0';
 		nbword--;
 		index++;
 		s += len + 1;
 	}
-	tab_string[index] = NULL;
+	tab_string[index] = 0;
 	return (tab_string);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	char const	*input_string = "Hello, world,how,are, you";
-	char	delimiter = ',';
+	printf("la\n");
+	if (ac != 3)
+		return 0;
+	char const	*input_string = av[1];
+	char	delimiter = (char) av[2];
 
-	char **result = ft_split(input_string, delimiter);
+	char **result = ft_split(input_string, ',');
 
 	if (result)
 	{
