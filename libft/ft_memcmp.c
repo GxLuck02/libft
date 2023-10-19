@@ -9,10 +9,8 @@
 /*   Updated: 2023/10/18 15:15:09 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
 #include <stddef.h>
-#include <stdio.h>
-*/
+
 int	ft_memcmp(const void *str1, const void *str2, size_t size)
 {
 	int	result;

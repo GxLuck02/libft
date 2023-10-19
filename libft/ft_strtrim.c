@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttreichl <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ttreichl <ttreichl@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 15:27:44 by ttreichl          #+#    #+#             */
-/*   Updated: 2023/10/18 15:56:55 by ttreichl         ###   ########.fr       */
+/*   Created: 2023/10/18 18:20:30 by ttreichl          #+#    #+#             */
+/*   Updated: 2023/10/18 18:20:30 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strtrim(char const	*s1, char const	*set)
 {
 	char	*newstring;
 	char	*result;
 
-	newstring = malloc((ft_strlen(src) + 1) * sizeof(char));
+	newstring = malloc(ft_strlen(s1 +1) * sizeof (char));
 	result = newstring;
 	if (newstring == 0)
 		return (0);
-	while (*src != '\0')
+	while (*s1 != '\0')
 	{
-		*newstring = *src;
-		newstring++;
-		src++;
+		if (ft_strchr(set, *s1) == 0)
+		{
+			*newstring = *s1;
+			newstring++;
+		}
+		s1++;
 	}
 	*newstring = '\0';
 	return (result);
@@ -33,11 +36,13 @@ char	*ft_strdup(const char *src)
 /*
 int main()
 {
-	char	src[]= "Ce soir c'est LEC pour Karmine";
-	char	*duplicate = ft_strdup(src);
+	char	string[]= "Blue Blue, Blue !";
+	char	set[]= ",!B";
 
-	printf ("%s\n", duplicate);
-	free (duplicate);
+	char	*final= ft_strtrim(string, set);
+	printf("%s\n", final);
+
+	free(final);
 	return (0);
 }
-*/
+ */

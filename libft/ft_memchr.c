@@ -9,6 +9,8 @@
 /*   Updated: 2023/10/18 13:32:09 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <string.h>
+
 void	*ft_memchr(const void *memoryBlock, int searchedChar, size_t size)
 {
 	const unsigned char	*memb;

@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttreichl <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ttreichl <ttreichl@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 15:27:44 by ttreichl          #+#    #+#             */
-/*   Updated: 2023/10/18 15:56:55 by ttreichl         ###   ########.fr       */
+/*   Created: 2023/10/18 16:48:09 by ttreichl          #+#    #+#             */
+/*   Updated: 2023/10/18 16:48:09 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include "libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_substr(char const	*s, unsigned int start, size_t len)
 {
 	char	*newstring;
-	char	*result;
+	char	*final;
 
-	newstring = malloc((ft_strlen(src) + 1) * sizeof(char));
-	result = newstring;
+	newstring = malloc((len) * sizeof (char));
+	final = newstring;
 	if (newstring == 0)
 		return (0);
-	while (*src != '\0')
+	while (start != 0)
+	{
+		src++;
+		start--;
+	}
+	while (len > 0)
 	{
 		*newstring = *src;
 		newstring++;
 		src++;
+		len--;
 	}
 	*newstring = '\0';
-	return (result);
+	return (final);
 }
 /*
 int main()
 {
-	char	src[]= "Ce soir c'est LEC pour Karmine";
-	char	*duplicate = ft_strdup(src);
+	char	start[]= "La meilleur couleur est le bleu.";
 
-	printf ("%s\n", duplicate);
-	free (duplicate);
-	return (0);
+	char	*result = ft_substr(start, 27, 4);
+	printf("%s\n", result);
+
+	free(result);
 }
-*/
+ */

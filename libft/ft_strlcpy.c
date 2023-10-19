@@ -9,10 +9,7 @@
 /*   Updated: 2023/10/13 15:34:28 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
 #include <string.h>
-#include <stdio.h>
-*/
 
 char	*ft_strlcpy(char *dest, const char *src, size_t lenght)
 {
