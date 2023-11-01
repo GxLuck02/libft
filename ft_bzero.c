@@ -14,5 +14,4 @@
 void	ft_bzero(void *ptr, size_t nbroct)
 {
 	ft_memset(ptr, 0, nbroct);
-	return;
 }

@@ -16,7 +16,7 @@
 size_t	getstart(char const *string, char const	*set)
 {
 	size_t	len;
-	int		i;
+	size_t	i;
 
 	len = ft_strlen(string);
 	i = 0;
@@ -32,7 +32,7 @@ size_t	getstart(char const *string, char const	*set)
 size_t	getend(char const *string, char const	*set)
 {
 	size_t	len;
-	int		i;
+	size_t	i;
 
 	len = ft_strlen(string);
 	i = 0;

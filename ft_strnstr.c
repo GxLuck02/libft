@@ -17,7 +17,7 @@ char	*ft_strnstr(const char *string, const char *needle, size_t len)
 	const char	*temp_needle;
 	size_t		temp_len;
 
-	if (len == 0 && ft_strlen(needle) == 0 || *needle == '\0')
+	if ((len == 0 && ft_strlen(needle) == 0) || *needle == '\0')
 		return ((char *)string);
 	while (*string != '\0' && len > 0)
 	{

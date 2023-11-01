@@ -24,8 +24,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 		index++;
 	}
 }
-
-static void	my_fonction(unsigned int index, char *adressechar)
-{
-	adressechar[index] = adressechar[index] - 32;
-}

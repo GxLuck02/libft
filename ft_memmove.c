@@ -16,7 +16,7 @@
 */
 void	*ft_memmove(void *dest, const void *src, size_t nbroct)
 {
-	int	index;
+	size_t	index;
 
 	if (!dest && !src)
 		return (NULL);
