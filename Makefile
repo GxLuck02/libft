@@ -6,7 +6,7 @@
 #    By: ttreichl <ttreichl@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 16:04:41 by ttreichl          #+#    #+#              #
-#    Updated: 2023/10/24 16:04:46 by ttreichl         ###   ########.fr        #
+#    Updated: 2023/11/01 17:34:15 by ttreichl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 			= libft.a
 
 CC						= gcc
 RM						= rm -rf
-CFlAGS			= -Wall -Wextra -Werror -I
+CFLAGS			= -Wall -Wextra -Werror
 
 SRCS			=	ft_memcmp.c ft_strdup.c ft_split.c ft_strlcpy.c ft_isalnum.c ft_putnbr_fd.c \
 					ft_memset.c ft_memmove.c ft_strjoin.c ft_strchr.c ft_calloc.c \
@@ -32,15 +32,16 @@ OBJS			=	$(SRCS:.c=.o)
 
 B_OBJS			=	$(B_SRC:.c=.o)
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 all:			$(NAME) $(BONUS)
 
 $(NAME): 		$(OBJS)
 				ar rcs $(NAME)	$(OBJS)
-				ranlib $(NAME)
 
 bonus:			$(B_OBJS)
 				ar rcs $(NAME)	$(B_OBJS)
-				ranlib $(NAME)
 
 clean:
 				$(RM) $(OBJS) $(B_OBJS)
