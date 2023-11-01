@@ -6,112 +6,111 @@
 /*   By: ttreichl <ttreichl@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:05:19 by ttreichl          #+#    #+#             */
-/*   Updated: 2023/10/18 19:05:19 by ttreichl         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:18:09 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
+#include <stdio.h>
 
-char	*ft_strchr(const char	*string, int searchChar)
+static int	ft_count_word(char const *s, char c)
 {
-	while (*string != '\0')
+	int	i;
+	int	word;
+
+	i = 0;
+	word = 0;
+	while (s && s[i])
 	{
-		if (*string == searchChar)
-			return ((char *)string);
-		string++;
+		if (s[i] != c)
+		{
+			word++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		else
+			i++;
 	}
-	return (0);
+	return (word);
 }
 
-char	*ft_strlcpy(char *dest, const char *src, size_t lenght)
+static int	ft_size_word(char const *s, char c, int i)
 {
-	size_t	index;
+	int	size;
 
-	index = 0;
-	while (index < lenght && src[index] != '\0')
+	size = 0;
+	while (s[i] != c && s[i])
 	{
-		dest[index] = src[index];
-		index++;
+		size++;
+		i++;
 	}
-	dest[index] = '\0';
+	return (size);
+}
+
+static void	ft_free(char **strs, int j)
+{
+	while (j-- > 0)
+		free(strs[j]);
+	free(strs);
+}
+
+static char	**newstrings(char const *s, char c, char **dest, int nbrwords)
+{
+	int	i;
+	int	j;
+	int	size;
+
+	i = 0;
+	j = -1;
+	while (++j < nbrwords)
+	{
+		while (s[i] == c)
+			i++;
+		size = ft_size_word(s, c, i);
+		dest[j] = ft_substr(s, i, size);
+		if (!dest[j])
+		{
+			ft_free(dest, j);
+			return (NULL);
+		}
+		i += size;
+	}
+	dest[j] = 0;
 	return (dest);
 }
 
-
-
-
-int	nbr_word(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int	result;
+	int		word;
+	char	**strs;
 
-	result = 0;
-	if (*s != c && *s)
-		result++;
-	while (*s != '\0')
+	word = ft_count_word(s, c);
+	strs = (char **)malloc((word + 1) * sizeof(char *));
+	if (!strs)
+		return (NULL);
+	if (newstrings(s, c, strs, word) == NULL)
 	{
-		if (*s == c)
-		{
-			result++;
-			while (*s == c)
-				s++;
-		}
-		else
-			s++;
+		ft_free(strs, word);
+		return (NULL);
 	}
-	return (result);
+	return (strs);
 }
 
-char	**ft_split(char const	*s, char c)
-{
-	char	**tab_string;
-	int		index;
-	size_t	len;
-	int		nbword;
+/*
+int	main() {
+	char const input_string[] = "      split       this for   me  !";
 
-	index = 0;
-	nbword = nbr_word(s, c);
-	tab_string = malloc((nbword + 1) * sizeof(char *));
-	if (tab_string == 0)
-		return (0);
-	while (nbword > 0)
-	{
-		len = ft_strchr(s, c) - s;
-		if (!ft_strchr(s,c))
-			len = ft_strlen(s);
-		tab_string[index] = malloc((len + 1) * sizeof(char));
-		ft_strlcpy(tab_string[index], s, len);
-		nbword--;
-		index++;
-		s += len + 1;
-	}
-	tab_string[index] = 0;
-	return (tab_string);
-}
+	char **result = ft_split(input_string, ' ');
 
-int	main(int ac, char **av)
-{
-	printf("la\n");
-	if (ac != 3)
-		return 0;
-	char const	*input_string = av[1];
-	char	delimiter = (char) av[2];
-
-	char **result = ft_split(input_string, ',');
-
-	if (result)
-	{
-		for (int i = 0; result[i] != NULL; i++)
-		{
+	if (result) {
+		for (int i = 0; result[i] != NULL; i++) {
 			printf("Element %d: %s\n", i, result[i]);
 			free(result[i]);
 		}
 		free(result);
-	}
-	else
+	} else
 		printf("Erreur d'allocation mémoire.\n");
 
 	return (0);
 }
+*/

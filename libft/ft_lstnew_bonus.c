@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttreichl <ttreichl@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 15:06:59 by ttreichl          #+#    #+#             */
-/*   Updated: 2023/10/09 20:36:51 by ttreichl         ###   ########.fr       */
+/*   Created: 2023/10/30 15:22:38 by ttreichl          #+#    #+#             */
+/*   Updated: 2023/10/30 15:22:38 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isdigit(int c)
+t_list	*ft_lstnew(void *content)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	t_list	*new;
+
+	new = (t_list *)malloc (sizeof (*new));
+	if (new == 0)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

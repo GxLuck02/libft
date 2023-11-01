@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttreichl <ttreichl@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 15:06:59 by ttreichl          #+#    #+#             */
-/*   Updated: 2023/10/09 20:36:51 by ttreichl         ###   ########.fr       */
+/*   Created: 2023/10/23 20:48:11 by ttreichl          #+#    #+#             */
+/*   Updated: 2023/10/23 20:48:11 by ttreichl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isdigit(int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	char	a;
+
+	a = '\n';
+	write(fd, s, ft_strlen(s));
+	write(fd, &a, 1);
 }
+
+/*
+int	main()
+{
+	int fd = 1;
+
+	char message[] = "Bonjour, monde !";
+	ft_putendl_fd(message, fd);
+	printf("salut");
+	return 0;
+}
+*/
